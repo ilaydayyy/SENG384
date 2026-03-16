@@ -59,6 +59,33 @@ docker compose up --build
 
 ---
 
+## API Endpoints
+**Get all people:** GET /api/people  
+Returns the list of all registered people.
+**Get single person:** GET /api/people/:id  
+Returns a specific person by ID.
+**Create a new person:** POST /api/people
+**Example request body:**
+```bash
+{
+  "full_name": "Ilayda Ay",
+  "email": "ilayda@test.com"
+}
+```
+**Update a person:** PUT /api/people/:id  
+Updates an existing person's information.
+**Example request body:**
+```bash
+{
+  "full_name": "Updated Name",
+  "email": "updated@email.com"
+}
+```
+**Delete a person:** DELETE /api/people/:id  
+Deletes a person from the database.
+
+---
+
 ## Screenshots 
 
 **Form page:** <img width="1520" height="904" alt="Ekran Resmi 2026-03-16 20 13 52" src="https://github.com/user-attachments/assets/75a0c888-5197-4d43-9810-0781d9fe3f5c" />
