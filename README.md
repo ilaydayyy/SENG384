@@ -70,5 +70,5 @@ docker compose up --build
 
 ---
 
-**Developer:** Ulku Ilayda AY 
+**Developer:** Ulku Ilayda AY  
 **Student ID:** 202128004
