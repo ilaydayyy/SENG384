@@ -1,6 +1,9 @@
 # SENG 384 - Docker Homework 
 ## Person Management System
 
+**Developer:** Ulku Ilayda AY  
+**Student ID:** 202128004
+
 This project is a full-stack web application built with React, Node.js (Express), PostgreSQL, and Docker Compose.
 
 ---
@@ -69,6 +72,3 @@ docker compose up --build
 **Docker running in terminal:** <img width="1728" height="1117" alt="Ekran Resmi 2026-03-16 20 18 27" src="https://github.com/user-attachments/assets/7ebfff3a-cbff-4b5c-8cd7-7ec1f0916d95" />
 
 ---
-
-**Developer:** Ulku Ilayda AY  
-**Student ID:** 202128004
