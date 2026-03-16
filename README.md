@@ -65,6 +65,7 @@ docker compose up --build
 **Get single person:** GET /api/people/:id  
 
 **Create a new person:** POST /api/people
+
 **Example request body:**
 ```bash
 {
