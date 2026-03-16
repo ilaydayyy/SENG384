@@ -33,6 +33,7 @@ seng384-docker-homework/
 ├── backend/
 ├── frontend/
 ├── db/
+├── screenshots/ 
 ├── docker-compose.yml
 ├── .env.example
 └── README.md
