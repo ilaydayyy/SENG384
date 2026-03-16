@@ -1,8 +1,108 @@
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const API = "http://localhost:5001/api";
 
-function App() {
+function HomePage() {
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const navigate = useNavigate();
+
+  const validateForm = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!fullName.trim()) {
+      setMessage("Full Name is required.");
+      return false;
+    }
+
+    if (!email.trim()) {
+      setMessage("Email is required.");
+      return false;
+    }
+
+    if (!emailRegex.test(email)) {
+      setMessage("Please enter a valid email address.");
+      return false;
+    }
+
+    return true;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!validateForm()) return;
+
+    try {
+      const res = await fetch(`${API}/people`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          full_name: fullName,
+          email,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setMessage(data.error || "Failed to add person.");
+        return;
+      }
+
+      setMessage("Person added successfully.");
+      setFullName("");
+      setEmail("");
+    } catch (error) {
+      setMessage("Server error.");
+    }
+  };
+
+  return (
+    <div style={{ maxWidth: "900px", margin: "40px auto", fontFamily: "Arial, sans-serif" }}>
+      <nav style={{ marginBottom: "20px" }}>
+        <Link to="/" style={{ marginRight: "15px" }}>Registration</Link>
+        <Link to="/people">People List</Link>
+      </nav>
+
+      <h1>Registration Form</h1>
+
+      <form onSubmit={handleSubmit}>
+        <div style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
+          <input
+            type="text"
+            placeholder="Full Name"
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
+            style={{ padding: "10px", flex: 1 }}
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            style={{ padding: "10px", flex: 1 }}
+          />
+          <button type="submit" style={{ padding: "10px 16px" }}>
+            Add
+          </button>
+        </div>
+      </form>
+
+      {message && <p>{message}</p>}
+
+      <button onClick={() => navigate("/people")} style={{ padding: "10px 16px", marginTop: "10px" }}>
+        Go to People List
+      </button>
+    </div>
+  );
+}
+
+function PeoplePage() {
   const [people, setPeople] = useState([]);
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -50,17 +150,22 @@ function App() {
     return true;
   };
 
-  const handleSubmit = async (e) => {
+  const handleEdit = (person) => {
+    setFullName(person.full_name);
+    setEmail(person.email);
+    setEditingId(person.id);
+    setMessage(`Editing ${person.full_name}`);
+  };
+
+  const handleUpdate = async (e) => {
     e.preventDefault();
 
     if (!validateForm()) return;
+    if (!editingId) return;
 
     try {
-      const url = editingId ? `${API}/people/${editingId}` : `${API}/people`;
-      const method = editingId ? "PUT" : "POST";
-
-      const res = await fetch(url, {
-        method,
+      const res = await fetch(`${API}/people/${editingId}`, {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
@@ -73,23 +178,16 @@ function App() {
       const data = await res.json();
 
       if (!res.ok) {
-        setMessage(data.error || "Operation failed.");
+        setMessage(data.error || "Update failed.");
         return;
       }
 
-      setMessage(editingId ? "Person updated successfully." : "Person added successfully.");
+      setMessage("Person updated successfully.");
       resetForm();
       fetchPeople();
     } catch (error) {
       setMessage("Server error.");
     }
-  };
-
-  const handleEdit = (person) => {
-    setFullName(person.full_name);
-    setEmail(person.email);
-    setEditingId(person.id);
-    setMessage(`Editing ${person.full_name}`);
   };
 
   const handleDelete = async (id) => {
@@ -117,42 +215,42 @@ function App() {
 
   return (
     <div style={{ maxWidth: "900px", margin: "40px auto", fontFamily: "Arial, sans-serif" }}>
-      <h1>People Manager</h1>
+      <nav style={{ marginBottom: "20px" }}>
+        <Link to="/" style={{ marginRight: "15px" }}>Registration</Link>
+        <Link to="/people">People List</Link>
+      </nav>
 
-      <form onSubmit={handleSubmit} style={{ marginBottom: "30px" }}>
-        <div style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
-          <input
-            type="text"
-            placeholder="Full Name"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-            style={{ padding: "10px", flex: 1 }}
-          />
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            style={{ padding: "10px", flex: 1 }}
-          />
-          <button type="submit" style={{ padding: "10px 16px" }}>
-            {editingId ? "Update" : "Add"}
-          </button>
-          {editingId && (
-            <button
-              type="button"
-              onClick={resetForm}
-              style={{ padding: "10px 16px" }}
-            >
+      <h1>People List</h1>
+
+      {editingId && (
+        <form onSubmit={handleUpdate} style={{ marginBottom: "20px" }}>
+          <h3>Edit Person</h3>
+          <div style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
+            <input
+              type="text"
+              placeholder="Full Name"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+              style={{ padding: "10px", flex: 1 }}
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              style={{ padding: "10px", flex: 1 }}
+            />
+            <button type="submit" style={{ padding: "10px 16px" }}>
+              Update
+            </button>
+            <button type="button" onClick={resetForm} style={{ padding: "10px 16px" }}>
               Cancel
             </button>
-          )}
-        </div>
-      </form>
+          </div>
+        </form>
+      )}
 
       {message && <p>{message}</p>}
-
-      <h2>People List</h2>
 
       <table border="1" cellPadding="10" cellSpacing="0" style={{ width: "100%" }}>
         <thead>
@@ -174,7 +272,9 @@ function App() {
                   <button onClick={() => handleEdit(person)} style={{ marginRight: "8px" }}>
                     Edit
                   </button>
-                  <button onClick={() => handleDelete(person.id)}>Delete</button>
+                  <button onClick={() => handleDelete(person.id)}>
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))
@@ -186,6 +286,15 @@ function App() {
         </tbody>
       </table>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/people" element={<PeoplePage />} />
+    </Routes>
   );
 }
 
