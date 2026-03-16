@@ -56,7 +56,7 @@ docker compose up --build
 
 ## Screenshots 
 
-![**Form page:**] <img width="1520" height="904" alt="Ekran Resmi 2026-03-16 20 13 52" src="https://github.com/user-attachments/assets/75a0c888-5197-4d43-9810-0781d9fe3f5c" />
+**![Form page:]** <img width="1520" height="904" alt="Ekran Resmi 2026-03-16 20 13 52" src="https://github.com/user-attachments/assets/75a0c888-5197-4d43-9810-0781d9fe3f5c" />
 
 ![**People list page:**] <img width="1492" height="887" alt="Ekran Resmi 2026-03-16 20 14 58" src="https://github.com/user-attachments/assets/69930ab5-e03b-4134-a7b1-4832d7ac68e4" />
 
