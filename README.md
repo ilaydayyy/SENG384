@@ -1,4 +1,5 @@
-# SENG 384 Docker Homework – Person Management System
+# SENG 384 - Docker Homework 
+## Person Management System
 
 This project is a full-stack web application built with React, Node.js (Express), PostgreSQL, and Docker Compose.
 
@@ -8,13 +9,17 @@ The application allows users to:
 
 - Add a new person
 - View all registered people
-- Delete a person
+- Edit/Update/Delete a person
 
-The system uses:
-- **Frontend:** React
+---
+
+# Technologies Used
+- **Frontend:** React (Vite)
 - **Backend:** Node.js + Express
 - **Database:** PostgreSQL
 - **Containerization:** Docker + Docker Compose
+
+---
 
 ## Project Structure
 
@@ -25,53 +30,37 @@ seng384-docker-homework/
 ├── db/
 ├── docker-compose.yml
 ├── .env.example
-└── README.md 
+└── README.md
 
-How to Run
-Make sure Docker Desktop is installed and running.
-Run the following command in the project root:
+---
+
+## How to Run
+
+Make sure **Docker Desktop** is installed and running.
+
+Clone the repository and run:
+
+```bash
 docker compose up --build
 
-Application URLs
-Frontend: http://localhost:5173
-Backend: http://localhost:5001/api/health
-API Endpoints
-GET all people
+## Application URLs
 
-GET /api/people
+**Frontend:** http://localhost:5173
+**People List Page:** http://localhost:5173/people 
+**Backend Health Check:** http://localhost:5001/api/health
 
-GET single person
+---
 
-GET /api/people/:id
+## Screenshots 
 
-Create person
+**Form page:** <img width="1520" height="904" alt="Ekran Resmi 2026-03-16 20 13 52" src="https://github.com/user-attachments/assets/75a0c888-5197-4d43-9810-0781d9fe3f5c" />
 
-POST /api/people
+**People list page:** <img width="1492" height="887" alt="Ekran Resmi 2026-03-16 20 14 58" src="https://github.com/user-attachments/assets/69930ab5-e03b-4134-a7b1-4832d7ac68e4" />
 
-Content-Type: application/json
+**Edit/Update operation:** <img width="1509" height="887" alt="Ekran Resmi 2026-03-16 20 15 22" src="https://github.com/user-attachments/assets/da1ba2cb-568d-4c8e-9375-9ce6fcd4ec0f" />
 
-Example request body: {
-  "full_name": "Ilayda Ay",
-  "email": "ilayda@test.com"
-}
-Update person
-PUT /api/people/:id
-Delete person
-DELETE /api/people/:id
-Environment Variables
-Example .env.example:
-DB_HOST=db
-DB_PORT=5432
-DB_USER=postgres
-DB_PASSWORD=postgres
-DB_NAME=people_db
+**Delete operation:** <img width="1503" height="886" alt="Ekran Resmi 2026-03-16 20 17 30" src="https://github.com/user-attachments/assets/17c66f9b-f258-4703-8b19-338d007afeb2" />
 
-Screenshots
-Add the following screenshots here:
-Form page
-People list page
-Add operation
-Delete operation
-Docker running in terminal
-Notes
-This project is containerized with Docker Compose and can be started with a single command.
+**Docker running in terminal:** <img width="1728" height="1117" alt="Ekran Resmi 2026-03-16 20 18 27" src="https://github.com/user-attachments/assets/7ebfff3a-cbff-4b5c-8cd7-7ec1f0916d95" />
+
+---
