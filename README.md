@@ -61,9 +61,9 @@ docker compose up --build
 
 ## API Endpoints
 **Get all people:** GET /api/people  
-Returns the list of all registered people.
+
 **Get single person:** GET /api/people/:id  
-Returns a specific person by ID.
+
 **Create a new person:** POST /api/people
 **Example request body:**
 ```bash
@@ -73,7 +73,7 @@ Returns a specific person by ID.
 }
 ```
 **Update a person:** PUT /api/people/:id  
-Updates an existing person's information.
+
 **Example request body:**
 ```bash
 {
@@ -82,7 +82,6 @@ Updates an existing person's information.
 }
 ```
 **Delete a person:** DELETE /api/people/:id  
-Deletes a person from the database.
 
 ---
 
