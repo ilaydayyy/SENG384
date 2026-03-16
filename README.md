@@ -1,5 +1,5 @@
 # SENG 384 - Docker Homework 
-## Person Management System
+# Person Management System
 
 **Developer:** Ulku Ilayda AY  
 **Student ID:** 202128004
@@ -18,7 +18,7 @@ The application allows users to:
 
 ---
 
-# Technologies Used
+## Technologies Used
 - **Frontend:** React (Vite)
 - **Backend:** Node.js + Express
 - **Database:** PostgreSQL
