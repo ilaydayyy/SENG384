@@ -31,7 +31,7 @@ seng384-docker-homework/
 ├── docker-compose.yml
 ├── .env.example
 └── README.md
-
+```
 ---
 
 ## How to Run
@@ -42,6 +42,7 @@ Clone the repository and run:
 
 ```bash
 docker compose up --build
+```
 
 ## Application URLs
 
