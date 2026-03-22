@@ -37,7 +37,41 @@ seng384-docker-homework/
 ├── docker-compose.yml
 ├── .env.example
 └── README.md
+
+SENG384/
+│
+├── docker-compose.yml        
+├── .env.example              
+├── README.md                 
+│
+├── backend/                  
+│   ├── Dockerfile
+│   ├── package.json
+│   ├── package-lock.json
+│   └── src/
+│       └── index.js          
+│
+├── frontend/                 
+│   ├── Dockerfile
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── vite.config.js
+│   └── src/
+│       ├── App.jsx           
+│       ├── main.jsx          
+│       └── components/       
+│
+├── db/                       
+│   └── init.sql              
+│
+└── screenshots/              
+    ├── FORMPAGE.png
+    ├── LISTPAGE.png
+    ├── EDIT-UPDATE.png
+    ├── DELETE.png
+    ├── DOCKERRUNNING.png
 ```
+
 ---
 
 ## How to Run
