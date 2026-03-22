@@ -29,15 +29,6 @@ The application allows users to:
 ## Project Structure
 
 ```bash
-seng384-docker-homework/
-├── backend/
-├── frontend/
-├── db/
-├── screenshots/ 
-├── docker-compose.yml
-├── .env.example
-└── README.md
-
 SENG384/
 │
 ├── docker-compose.yml        
@@ -69,7 +60,7 @@ SENG384/
     ├── LISTPAGE.png
     ├── EDIT-UPDATE.png
     ├── DELETE.png
-    ├── DOCKERRUNNING.png
+    └── DOCKERRUNNING.png
 ```
 
 ---
